@@ -5,7 +5,7 @@ I have been really frustrated with the default Quora notifications page. Hundred
 
 ![screenshot](http://ahmadassaf.com/blog/wp-content/uploads/2014/02/Screen-Shot-2014-03-02-at-00.01.19.png)
 
-Quora Better Notification (QBN) – A Chrome Extension that will improve Quora Notifications I have only found one attempt to fix this which is a bookmarklet that at the moment of writing this post was not functioning properly. However, some guy apparently ported that with some fixes into a Chrome extension called Quora Extender. Although it does a good job in combining the notifications, my comments are:
+**Quora Better Notification (QBN)** is a Chrome Extension that will improve Quora Notifications I have only found one attempt to fix this which is a bookmarklet that at the moment of writing this post was not functioning properly. However, some guy apparently ported that with some fixes into a Chrome extension called Quora Extender. Although it does a good job in combining the notifications, my comments are:
 
 - I don’t like the approach for the interface and packing of elements together
 - They don’t catch new notification fetched by the Quora infinite Scroll
