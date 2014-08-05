@@ -59,6 +59,14 @@ I will be keen on porting this plugin into a Bookmarklet if requested
 Updates
 ==========
 
+**v.0.3**
+
+- Adapted the new Quora CSS styling:
+    + Fixed the toolbar position and fixed its z-index
+    + Added the notifications panel back on the right hand side
+    + Fixed the cluster and mark-as-read notifications
+- Various CSS overrides and improvements
+
 **v.0.22**
 
 - Fixed notifications tooltip to appear on top of the fixed header

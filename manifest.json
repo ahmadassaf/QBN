@@ -1,6 +1,6 @@
 {
   "name": "QBN - Quora Better Notification",
-  "version": "0.22",
+  "version": "0.30",
   "manifest_version": 2,
   "description": "A Better Notifications Hack for Quora",
   "homepage_url": "http://ahmadassaf.com/blog/personal-projects/quora-better-notification-qbn-chrome-extension-will-improve-quora-notifications/",
@@ -37,8 +37,6 @@
   "offline_enabled": true,
   "web_accessible_resources": [
     "css/qbn.css",
-     "lib/underscore.js",
-      "lib/core-min.js",
-      "lib/sha256.js"
+     "lib/underscore.js"
   ]
 }

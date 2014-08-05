@@ -1,3 +1,8 @@
+.notification_item {position: relative;}
+.QBN_list_contents {position: fixed;top:130px;}
+li.linked_list_item.QBN_notification {margin: 5px 0;font-size: 15px;}
+li.linked_list_item span {margin: 0 10px;}
+
 .qbn_filter {text-transform: capitalize; cursor: pointer;}
 	.qbn_filter:not(.active) {color:#ddd !important}
 .qbn_notification{width: 10px;height: 10px;background: #CE2A2A;border-radius: 50%;position: absolute;left: -25px;top: 50%;}
@@ -7,6 +12,10 @@
 h1.heading, .heading_section {margin-bottom: 5px !important}
 .topics_filter {margin:10px 0 0;width: 100%;text-align: right;display: block;padding-bottom: 0.4em;}
 .notification .notification_text {padding: 0 5px !important}
-h1.heading{position: fixed !important;z-index: 9999!important;background: #fff!important;width: 485px!important;top: 56px!important;padding: 10px 0!important;}
+h1.heading{position: fixed !important;z-index: 599!important;background: #fff!important;width: 525px!important;top: 45px !important;padding: 12px 0!important;}
 ul.notifications_list .pagedlist_item:first-child {margin-top:60px}
 .hover_menu.fixable_fixed{z-index:99999 !important;}
+
+/* CSS Overrides */
+.SiteHeader .SiteHeaderNavItem .nav_item_selected_indicator {background-color: #397ec5 !important; height: 4px }
+.NotificationsClearButton {position: absolute;top:45px;}

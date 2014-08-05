@@ -1,6 +1,7 @@
 console.log("====== QBN STARTED LISTENING TO QUORA NOTIFICATIONS ====== ");
 
-var required_scripts = ["core-min","sha256","underscore"];
+
+var required_scripts = ["underscore"];
 var injection_scripts = [];
 // This function will inject the required Scripts into the main notifications page
 $(required_scripts).each(function() {
@@ -15,6 +16,7 @@ $(required_scripts).each(function() {
 var injectedCode = '(' + function() {
 	if (!window.QBN) window.QBN = {};
 	jQuery.extend(window.QBN,{
+	// Cluster the Quora notifications
 	updateNotificationsList: function() {
 		$('ul.notifications_list li.unseen').each(function() {
 			if (!$(this).hasClass('UNSEEN'))
@@ -39,14 +41,14 @@ var injectedCode = '(' + function() {
 					// Add the filter as a class that will be used to filter notifications
 					$(notifications_selector).addClass(notification_id);
 					// Append the notification counter to the currently styled Quora list
-					$('ul.list_contents:first').append(new_notification_list);
+					$('.QBN_list_contents').append(new_notification_list);
 				}
 			}
 		});
 	},
 	attachActions: function() {
 		// Attach notifications filter actions
-		$('ul.list_contents:first').on('click', '.qbn_filter', function(e) {
+		$('.QBN_list_contents').on('click', '.qbn_filter', function(e) {
 			e.preventDefault();
 			// Toggle the active filter class, the id of the active class will be used for clustering the notifications
 			$(this).toggleClass('active');
@@ -67,7 +69,7 @@ var injectedCode = '(' + function() {
 	},
 	buildFiltersDropdown: function() {
 		var topics_array    = _.unique(window.QBN.questions_topics);
-		$('option.option_filter:selected').val() == '*' ?  $('.pagedlist_item').show(): $('.' + CryptoJS.SHA256($('option.option_filter:selected').val()).toString(CryptoJS.enc.Base64)).parents('.pagedlist_item').show()
+		$('option.option_filter:selected').val() == '*' ?  $('.pagedlist_item').show(): $('.' + window.QBN.hashCode($('option.option_filter:selected').val() + '' )).parents('.pagedlist_item').show()
 		if ($('option.option_filter').length > 1 && $('option.option_filter').length !== window.QBN.questions_topics.length) {
 			// Dropdownbox already built, update new items
 			var last_added_item = _.indexOf(topics_array, $('option.option_filter').last().val());
@@ -115,7 +117,7 @@ var injectedCode = '(' + function() {
 			var context_node  = $(question_node).find('.question_context span').first();
 			var context       = $(context_node).text();
 			var question      = $(question_node).text();
-			var question_hash = CryptoJS.SHA256(question).toString(CryptoJS.enc.Base64);
+			var question_hash = window.QBN.hashCode(question + '');
 
 			if (_.has(window.QBN.new_answers_notification, question_hash)) {
 				window.QBN.new_answers_notification[question_hash].node.push(question_node);
@@ -152,7 +154,7 @@ var injectedCode = '(' + function() {
 			var entities        = $(this).find('a[action="notificationSelected:"]');
 			var question_node   = $(entities).first();
 			var question        = $(question_node).text();
-			var question_hash   = CryptoJS.SHA256(question).toString(CryptoJS.enc.Base64);
+			var question_hash   = window.QBN.hashCode(question + '');
 
 			var context_node    = $(question_node).find('.question_context span').first();
 			var context_ID      = $(context_node).attr('id');
@@ -229,10 +231,24 @@ window.QBN.parserMappings = {
 		bio               : "suggested you describe your experience"	// Suggested to edit your bio
 	};
 
+window.QBN.hashCode = function(string) {
+  var hash = 0, i, chr, len;
+  if (string.length == 0) return hash;
+  for (i = 0, len = string.length; i < len; i++) {
+    chr   = string.charCodeAt(i);
+    hash  = ((hash << 5) - hash) + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return hash;
+}
+
+		// Change the mark as read button text
+		$('.action_button').text('Mark all as read');
 		// Check if the user has selected to group all notifications or only the unread ones
 		window.QBN.notifications_to_parse   = window.QBN.include_all_notifications ? 'ul.notifications_list li' : 'ul.notifications_list li.unseen';
 		// Insert the filtering dropdown menu that will be populated with discovered topics
 		$('.heading').append('<span class="topics_filter">Topics Filter: <select id="topicsFilter"><option class="option_filter" value="*">Show All</option></select></span>');
+		$('.grid_page').append('<ul class="QBN_list_contents"></ul>');
 		// Attach the action items for filtering on topics and notification types
 		window.QBN.attachActions();
 		$('body').ajaxSuccess(function(evt, request, settings){
