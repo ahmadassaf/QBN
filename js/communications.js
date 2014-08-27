@@ -33,11 +33,11 @@ var injectedCode = '(' + function() {
 				var notification_id       = 'notifications_' + key;
 				// Check if the new filters list has been built at least once, if yes refresh only the counter
 				if ($('#' + notification_id).length > 0  ) {
-					$('#' + notification_id + ' .count').text(notification_coutner);
+					$('#' + notification_id + ' .unread_count').text(notification_coutner);
 				} else {
 					// The counter item for this notification type has not been built yet ... do it !!
 					var new_notification_list = '<li class="tab linked_list_item QBN_notification"><a class="qbn_filter link" id="'+ notification_id +'">' + key.replace('_',' ') +
-					'<span><strong class="count">'+ notification_coutner +'</strong></span></a></li>';
+					'<span class="unread_count">'+ notification_coutner +'</span></a></li>';
 					// Add the filter as a class that will be used to filter notifications
 					$(notifications_selector).addClass(notification_id);
 					// Append the notification counter to the currently styled Quora list
@@ -48,7 +48,7 @@ var injectedCode = '(' + function() {
 	},
 	attachActions: function() {
 		// Attach notifications filter actions
-		$('.QBN_list_contents').on('click', '.qbn_filter', function(e) {
+		$(window.QBN.quora_selectors.header).on('click', '.qbn_filter', function(e) {
 			e.preventDefault();
 			// Toggle the active filter class, the id of the active class will be used for clustering the notifications
 			$(this).toggleClass('active');
@@ -213,7 +213,7 @@ console.log("Building the Quora Better Notifications Panel ... ");
 	window.QBN.questions_topics           = [];
 	window.QBN.quora_selectors            = {
 		'header'                 : '.NotificationsNav',
-		'notifications_list'     : '.categories .list_contents',
+		'notifications_list'     : '.QBN_categories .list_contents',
 		'notifications_container': 'ul.NotificationsList',
 		'notification_item'      : '.notification_item',
 	}
@@ -252,6 +252,7 @@ window.QBN.hashCode = function(string) {
 		window.QBN.notifications_to_parse    = window.QBN.quora_selectors.notifications_container;
 		window.QBN.notifications_to_parse   += window.QBN.include_all_notifications ? ' li' : ' li.unseen';
 		// Insert the topic filtering notification in the sidebar
+		$(window.QBN.quora_selectors.header).append('<div class="QBN_categories"><div class="SimpleTabs Tabs simple_tabs"><ul class="list_contents" ><li class="title">Filter By Type++</li></ul></div>');
 		$(window.QBN.quora_selectors.header).append('<div class="SimpleTabs Tabs simple_tabs"><ul class="list_contents" ><li class="title">Filter By Topic</li></ul>');
 		// Insert the filtering dropdown menu that will be populated with discovered topics
 		$(window.QBN.quora_selectors.header).append('<span class="topics_filter"><select id="topicsFilter"><option class="option_filter" value="*">Show All</option></select></span>');
