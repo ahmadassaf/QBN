@@ -18,7 +18,7 @@ var injectedCode = '(' + function() {
 	jQuery.extend(window.QBN,{
 	// Cluster the Quora notifications
 	updateNotificationsList: function() {
-		$('ul.notifications_list li.unseen').each(function() {
+		$('ul.NotificationsList li.unseen').each(function() {
 			if (!$(this).hasClass('UNSEEN'))
 				$(this).addClass('UNREAD').find('.notification').append('<span class="qbn_notification_unread"></span>');
 		});
@@ -242,12 +242,10 @@ window.QBN.hashCode = function(string) {
   return hash;
 }
 
-		// Change the mark as read button text
-		$('.action_button').text('Mark all as read');
 		// Check if the user has selected to group all notifications or only the unread ones
 		window.QBN.notifications_to_parse   = window.QBN.include_all_notifications ? 'ul.notifications_list li' : 'ul.notifications_list li.unseen';
 		// Insert the filtering dropdown menu that will be populated with discovered topics
-		$('.heading').append('<span class="topics_filter">Topics Filter: <select id="topicsFilter"><option class="option_filter" value="*">Show All</option></select></span>');
+		$('.NotificationsNav').append('<span class="topics_filter">Topics Filter <select id="topicsFilter"><option class="option_filter" value="*">Show All</option></select></span>');
 		$('.grid_page').append('<ul class="QBN_list_contents"></ul>');
 		// Attach the action items for filtering on topics and notification types
 		window.QBN.attachActions();
