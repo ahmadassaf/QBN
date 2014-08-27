@@ -18,7 +18,7 @@ var injectedCode = '(' + function() {
 	jQuery.extend(window.QBN,{
 	// Cluster the Quora notifications
 	updateNotificationsList: function() {
-		$('ul.NotificationsList li.unseen').each(function() {
+		$(window.QBN.quora_selectors.notifications_container + ' li.unseen').each(function() {
 			if (!$(this).hasClass('UNSEEN'))
 				$(this).addClass('UNREAD').find('.notification').append('<span class="qbn_notification_unread"></span>');
 		});
@@ -41,7 +41,7 @@ var injectedCode = '(' + function() {
 					// Add the filter as a class that will be used to filter notifications
 					$(notifications_selector).addClass(notification_id);
 					// Append the notification counter to the currently styled Quora list
-					$('.QBN_list_contents').append(new_notification_list);
+					$(window.QBN.quora_selectors.notifications_list).append(new_notification_list);
 				}
 			}
 		});
@@ -63,7 +63,7 @@ var injectedCode = '(' + function() {
 		});
 		// Attach notifications filter actions
 		$('.notifications_tab').on('click', '.qbn_notification_unread', function(e) {
-			var URL = $(this).parents('.notification_item').find('a[action="notificationSelected:"]').first().attr('href');
+			var URL = $(this).parents(window.QBN.quora_selectors.notification_item).find('a[action="notificationSelected:"]').first().attr('href');
 			$.ajax({ url: URL });
 		});
 	},
@@ -183,12 +183,12 @@ var injectedCode = '(' + function() {
 				// Add the topics and contexts found as data attributes and classes for the first question (used for filtering)
 				$('#' + main_question_ID).attr('data-topic',topic.join(" ")).addClass(topic.join(" "));
 				// Change the Question text to reflect cluster information
-				if (context !== "") $('#' + main_question_ID).parents('.notification_item').find('.question_context').remove();
+				if (context !== "") $('#' + main_question_ID).parents(window.QBN.quora_selectors.notification_item).find('.question_context').remove();
 				if ( topic.length > $('#' + id + ' .qbn_counter').text() ) {
 					$('#' + id).empty().html( ': <span class="qbn_counter">' + topic.length + '</span> topics ( ' + topic.join(", ").replace(/_/g,' ') + ' )');
 				}
 				// Add Clustered keyword to support identification of clustered questions
-				if ($('#' + main_question_ID).parents('.notification_item').find('.qbn_notification').length == 0) $('#' + main_question_ID).parents('.notification_item ').append('<span class="qbn_notification"></span>');
+				if ($('#' + main_question_ID).parents(window.QBN.quora_selectors.notification_item).find('.qbn_notification').length == 0) $('#' + main_question_ID).parents('.notification_item ').append('<span class="qbn_notification"></span>');
 			} else {
 				window.QBN.new_questions_notification[question_hash] = {
 					"question_ID": question_ID,
@@ -207,10 +207,16 @@ console.log("Building the Quora Better Notifications Panel ... ");
 
 /* List all the possible actions that can occur on a Quora Notifications List */
 
-window.QBN.include_all_notifications  = true;
-window.QBN.new_answers_notification   = [];
-window.QBN.new_questions_notification = [];
-window.QBN.questions_topics           = [];
+	window.QBN.include_all_notifications  = true;
+	window.QBN.new_answers_notification   = [];
+	window.QBN.new_questions_notification = [];
+	window.QBN.questions_topics           = [];
+	window.QBN.quora_selectors            = {
+		'header'                 : '.NotificationsNav',
+		'notifications_list'     : '.categories .list_contents',
+		'notifications_container': 'ul.NotificationsList',
+		'notification_item'      : '.notification_item',
+	}
 
 window.QBN.parserMappings = {
 		questions         : "was added",								// new question added to a topic you follow
@@ -243,10 +249,10 @@ window.QBN.hashCode = function(string) {
 }
 
 		// Check if the user has selected to group all notifications or only the unread ones
-		window.QBN.notifications_to_parse   = window.QBN.include_all_notifications ? 'ul.notifications_list li' : 'ul.notifications_list li.unseen';
+		window.QBN.notifications_to_parse    = window.QBN.quora_selectors.notifications_container;
+		window.QBN.notifications_to_parse   += window.QBN.include_all_notifications ? ' li' : ' li.unseen';
 		// Insert the filtering dropdown menu that will be populated with discovered topics
-		$('.NotificationsNav').append('<span class="topics_filter">Topics Filter <select id="topicsFilter"><option class="option_filter" value="*">Show All</option></select></span>');
-		$('.grid_page').append('<ul class="QBN_list_contents"></ul>');
+		$(window.QBN.quora_selectors.header).append('<span class="topics_filter">Topics Filter <select id="topicsFilter"><option class="option_filter" value="*">Show All</option></select></span>');
 		// Attach the action items for filtering on topics and notification types
 		window.QBN.attachActions();
 		$('body').ajaxSuccess(function(evt, request, settings){
