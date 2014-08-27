@@ -251,8 +251,10 @@ window.QBN.hashCode = function(string) {
 		// Check if the user has selected to group all notifications or only the unread ones
 		window.QBN.notifications_to_parse    = window.QBN.quora_selectors.notifications_container;
 		window.QBN.notifications_to_parse   += window.QBN.include_all_notifications ? ' li' : ' li.unseen';
+		// Insert the topic filtering notification in the sidebar
+		$(window.QBN.quora_selectors.header).append('<div class="SimpleTabs Tabs simple_tabs"><ul class="list_contents" ><li class="title">Filter By Topic</li></ul>');
 		// Insert the filtering dropdown menu that will be populated with discovered topics
-		$(window.QBN.quora_selectors.header).append('<span class="topics_filter">Topics Filter <select id="topicsFilter"><option class="option_filter" value="*">Show All</option></select></span>');
+		$(window.QBN.quora_selectors.header).append('<span class="topics_filter"><select id="topicsFilter"><option class="option_filter" value="*">Show All</option></select></span>');
 		// Attach the action items for filtering on topics and notification types
 		window.QBN.attachActions();
 		$('body').ajaxSuccess(function(evt, request, settings){
