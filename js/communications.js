@@ -219,22 +219,22 @@ console.log("Building the Quora Better Notifications Panel ... ");
 	}
 
 window.QBN.parserMappings = {
-		questions         : "was added",								// new question added to a topic you follow
-		replies           : "replied to your",							// replies to a some action you posted
-		post_comments     : "commented on your post",					// comments on one of your posts
-		answer_comments   : "commented on your answer",					// comments on one of your answers
-		suggestions       : "suggested edits",							// suggested edit to question
-		seeks             : "asked you to answer",						// asked you to answer a question
-		mentions          : "mentioned you in",							// mentioned you in a post
-		answers           : "wrote an answer for the question",			// wrote an answer for a question you follow
-		promotes          : "promoted your",							// promoted a question you asked
-		blog_followers    : "now following your blog",					// you have a new follower to one fo your blogs
-		question_followers: "now following a question you added",		// you have a new follower to one of your questions
-		followers         : "now following you.",						// you have a new user following you
-		upvotes           : "voted up",									// voted up an answer for you on some question
-		thanks            : "thanked you for",							// thanked you for an answer or contribution
-		tweets            : "posted a Tweet",							// Tweeted about some of your content
-		bio               : "suggested you describe your experience"	// Suggested to edit your bio
+		questions         : "was added",								                     // new question added to a topic you follow
+		replies           : "replied to your",							                 // replies to a some action you posted
+		post_comments     : "commented on your post",					               // comments on one of your posts
+		answer_comments   : "commented on your answer",					             // comments on one of your answers
+		suggestions       : "suggested edits",							                 // suggested edit to question
+		seeks             : "asked you to answer",						               // asked you to answer a question
+		mentions          : "mentioned you in",							                 // mentioned you in a post
+		answers           : "wrote an answer for the question",			         // wrote an answer for a question you follow
+		promotes          : "promoted your",							                   // promoted a question you asked
+		blog_followers    : "now following your blog",					             // you have a new follower to one fo your blogs
+		question_followers: "now following a question you added",		         // you have a new follower to one of your questions
+		followers         : "now following you.",						                 // you have a new user following you
+		upvotes           : "voted up",									                     // voted up an answer for you on some question
+		thanks            : "thanked you for",							                 // thanked you for an answer or contribution
+		tweets            : "posted a Tweet",							                   // Tweeted about some of your content
+		bio               : "suggested you describe your experience"	       // Suggested to edit your bio
 	};
 
 window.QBN.hashCode = function(string) {
