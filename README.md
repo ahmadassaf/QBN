@@ -61,6 +61,10 @@ I will be keen on porting this plugin into a Bookmarklet if requested
 Updates
 ==========
 
+**v.0.31**
+
+- Changes to match new CSS selector names in the new Quoa Interface
+
 **v.0.3**
 
 - Adapted the new Quora CSS styling:
