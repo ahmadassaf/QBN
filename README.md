@@ -7,7 +7,7 @@ QBN - Quora Better Notification Chrome Extension
 
 I have been really frustrated with the default Quora notifications page. Hundreds of new notifications everyday, lots of them are redundant (i.e. the same question added to several topics i follow or x number of people added an answer to a question i follow). And its not only me, i have recently read A typical day on Quora for me, or why notifications need to be burned before they lay eggs and that actually what sparked the urge in me to develop something in the weekend to solve not only what i thought my problem, but apparently a wide agreed upon one.
 
-![screenshot](http://ahmadassaf.com/blog/wp-content/uploads/2014/02/Screen-Shot-2014-03-02-at-00.01.19.png)
+![screenshot](http://ahmadassaf.com/images/posts/quora-better-notification.png)
 
 **Quora Better Notification (QBN)** is a Chrome Extension that will improve Quora Notifications I have only found one attempt to fix this which is a bookmarklet that at the moment of writing this post was not functioning properly. However, some guy apparently ported that with some fixes into a Chrome extension called Quora Extender. Although it does a good job in combining the notifications, my comments are:
 
