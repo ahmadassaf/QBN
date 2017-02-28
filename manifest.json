@@ -13,11 +13,7 @@
   "browser_action": {
     "default_icon": "icons/quora-19.png"
   },
-  "background": {
-    "scripts": ["lib/jquery.js"],
-    "persistent": true
-  },
-    "content_scripts": [
+  "content_scripts": [
     {
       "matches": ["*://*.quora.com/notifications"],
       "css": ["css/qbn.css"],
@@ -37,6 +33,6 @@
   "offline_enabled": true,
   "web_accessible_resources": [
     "css/qbn.css",
-     "lib/underscore.js"
+    "lib/underscore.js"
   ]
 }

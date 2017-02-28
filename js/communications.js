@@ -1,6 +1,5 @@
 console.log("====== QBN STARTED LISTENING TO QUORA NOTIFICATIONS ====== ");
 
-
 var required_scripts = ["underscore"];
 var injection_scripts = [];
 // This function will inject the required Scripts into the main notifications page
@@ -18,8 +17,8 @@ var injectedCode = '(' + function() {
 	jQuery.extend(window.QBN,{
 	// Cluster the Quora notifications
 	updateNotificationsList: function() {
-		$(window.QBN.quora_selectors.notifications_container + ' li.unseen').each(function() {
-			if (!$(this).hasClass('UNSEEN'))
+		$(window.QBN.quora_selectors.notifications_to_parse).each(function() {
+			if (!$(this).hasClass('unseen'))
 				$(this).addClass('UNREAD').find('.notification').append('<span class="qbn_notification_unread"></span>');
 		});
 		// Build the selectors array that we will loop on
@@ -215,7 +214,7 @@ console.log("Building the Quora Better Notifications Panel ... ");
 		'header'                 : '.NotificationsNav',
 		'notifications_list'     : '.QBN_categories .list_contents',
 		'notifications_container': 'ul.NotificationsList',
-		'notification_item'      : '.notification_item',
+		'notification_item'      : '.NotificationItem',
 	}
 
 window.QBN.parserMappings = {
@@ -250,7 +249,7 @@ window.QBN.hashCode = function(string) {
 
 		// Check if the user has selected to group all notifications or only the unread ones
 		window.QBN.notifications_to_parse    = window.QBN.quora_selectors.notifications_container;
-		window.QBN.notifications_to_parse   += window.QBN.include_all_notifications ? ' li' : ' li.unseen';
+		window.QBN.notifications_to_parse   += window.QBN.include_all_notifications ? window.QBN.quora_selectors.notification_item : window.QBN.quora_selectors.notification_item + ' .unseen';
 		// Insert the topic filtering notification in the sidebar
 		$(window.QBN.quora_selectors.header).append('<div class="QBN_categories"><div class="SimpleTabs Tabs simple_tabs"><ul class="list_contents" ><li class="title">Filter By Type++</li></ul></div>');
 		$(window.QBN.quora_selectors.header).append('<div class="SimpleTabs Tabs simple_tabs"><ul class="list_contents" ><li class="title">Filter By Topic</li></ul>');

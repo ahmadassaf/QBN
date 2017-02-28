@@ -3,6 +3,8 @@ QBN - Quora Better Notification Chrome Extension
 
 **Chrome Store** http://bit.ly/qbn_extension
 
+> This extension no longer works since Quora changed their UI and have implemented various filtering and clustering on notifications
+
 I have been really frustrated with the default Quora notifications page. Hundreds of new notifications everyday, lots of them are redundant (i.e. the same question added to several topics i follow or x number of people added an answer to a question i follow). And its not only me, i have recently read A typical day on Quora for me, or why notifications need to be burned before they lay eggs and that actually what sparked the urge in me to develop something in the weekend to solve not only what i thought my problem, but apparently a wide agreed upon one.
 
 ![screenshot](http://ahmadassaf.com/blog/wp-content/uploads/2014/02/Screen-Shot-2014-03-02-at-00.01.19.png)
@@ -33,7 +35,7 @@ I have decided that this has to end, i want to better view my notifications. Thi
 - Tweeted about some of your content
 - Suggested to edit your bio
 
-After Catching these notifications, i have hacked the sidebar and presented these as filters with a counter for the new ones. But doing only that is not enough for me at this point, i wanted to do some kind of clustering for some of the notification types. 
+After Catching these notifications, i have hacked the sidebar and presented these as filters with a counter for the new ones. But doing only that is not enough for me at this point, i wanted to do some kind of clustering for some of the notification types.
 
 Notifications Clustering
 ================================================
