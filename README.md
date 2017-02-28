@@ -1,7 +1,7 @@
 QBN - Quora Better Notification Chrome Extension
 ================================================
 
-**Chrome Store** http://bit.ly/qbn_extension
+[**Chrome Store**](http://bit.ly/qbn_extension)
 
 > This extension no longer works since Quora changed their UI and have implemented various filtering and clustering on notifications
 
